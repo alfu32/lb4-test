@@ -10,6 +10,7 @@ export async function main(options: ApplicationConfig = {}) {
   const url = app.restServer.url;
   console.log(`Server is running at ${url}`);
   console.log(`Try ${url}/ping`);
+  console.log(`or http://localhost:3000/`);
 
   return app;
 }
