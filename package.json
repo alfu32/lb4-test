@@ -31,7 +31,9 @@
     "openapi-spec": "node ./dist/openapi-spec",
     "prestart": "npm run build",
     "start": "node -r source-map-support/register .",
-    "clean": "lb-clean dist *.tsbuildinfo .eslintcache"
+    "clean": "lb-clean dist *.tsbuildinfo .eslintcache",
+    "gen:client-angular": "openapi-generator generate -i docs/openapi.yaml -g typescript-angular -o generated-sources/openapi/angular --additional-properties=\"ngVersion=9.1.7\"",
+    "gen:client-ts-rxjs": "openapi-generator generate -i docs/openapi.yaml -g typescript-rxjs -o generated-sources/openapi/rxjs --additional-properties=\"ngVersion=9.1.7\""
   },
   "repository": {
     "type": "git"
@@ -57,11 +59,12 @@
   },
   "devDependencies": {
     "@loopback/build": "^5.4.2",
-    "source-map-support": "^0.5.19",
-    "@loopback/testlab": "^3.1.6",
-    "@types/node": "^10.17.24",
     "@loopback/eslint-config": "^8.0.0",
+    "@loopback/testlab": "^3.1.6",
+    "@openapitools/openapi-generator-cli": "^1.0.13-4.3.1",
+    "@types/node": "^10.17.24",
     "eslint": "^7.1.0",
+    "source-map-support": "^0.5.19",
     "typescript": "~3.9.3"
   }
 }

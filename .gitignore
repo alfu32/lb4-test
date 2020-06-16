@@ -65,3 +65,6 @@ typings/
 
 package-lock.json
 yarn.lock
+
+generated-sources
+generated-sources/**

@@ -1,14 +1,25 @@
 {
   "ids": {
-    "Todo": 6
+    "Todo": 11,
+    "TodoList": 4
   },
   "models": {
     "Todo": {
-      "1": "{\"title\":\"do dishes\",\"isComplete\":false,\"id\":1}",
-      "2": "{\"title\":\"do todos\",\"isComplete\":true,\"id\":2}",
-      "3": "{\"title\":\"wash hair\",\"isComplete\":false,\"id\":3}",
-      "4": "{\"title\":\"get badge\",\"isComplete\":false,\"id\":4}",
-      "5": "{\"title\":\"buy food\",\"isComplete\":false,\"id\":5}"
+      "1": "{\"title\":\"do dishes\",\"isComplete\":false,\"id\":1,\"todoListId\":1}",
+      "2": "{\"title\":\"do todos\",\"isComplete\":true,\"id\":2,\"todoListId\":1}",
+      "3": "{\"title\":\"wash hair\",\"isComplete\":false,\"id\":3,\"todoListId\":1}",
+      "4": "{\"title\":\"get badge\",\"isComplete\":false,\"id\":4,\"todoListId\":1}",
+      "5": "{\"title\":\"buy food\",\"isComplete\":false,\"id\":5,\"todoListId\":1}",
+      "6": "{\"title\":\"last one\",\"isComplete\":false,\"id\":6,\"todoListId\":2}",
+      "7": "{\"title\":\"final last one\",\"isComplete\":false,\"id\":7,\"todoListId\":2}",
+      "8": "{\"title\":\"final final last one\",\"isComplete\":false,\"id\":8,\"todoListId\":2}",
+      "9": "{\"title\":\"final final final last one\",\"isComplete\":false,\"id\":9,\"todoListId\":2}",
+      "10": "{\"title\":\"one todo\",\"isComplete\":false,\"todoListId\":1,\"id\":10}"
+    },
+    "TodoList": {
+      "1": "{\"title\":\"my new list\",\"id\":1}",
+      "2": "{\"title\":\"my second list\",\"id\":2}",
+      "3": "{\"title\":\"my third list\",\"id\":3}"
     }
   }
 }
