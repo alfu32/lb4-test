@@ -7,43 +7,6 @@
     "contact": {}
   },
   "paths": {
-    "/hello": {
-      "get": {
-        "x-controller-name": "SmartHomeController",
-        "x-operation-name": "hello",
-        "tags": [
-          "SmartHomeController"
-        ],
-        "responses": {
-          "200": {
-            "description": "Return value of SmartHomeController.hello"
-          }
-        },
-        "operationId": "SmartHomeController.hello"
-      }
-    },
-    "/ping": {
-      "get": {
-        "x-controller-name": "PingController",
-        "x-operation-name": "ping",
-        "tags": [
-          "PingController"
-        ],
-        "responses": {
-          "200": {
-            "description": "Ping Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PingResponse"
-                }
-              }
-            }
-          }
-        },
-        "operationId": "PingController.ping"
-      }
-    },
     "/todo-lists/count": {
       "get": {
         "x-controller-name": "TodoListController",
@@ -1620,30 +1583,6 @@
         },
         "additionalProperties": false,
         "x-typescript-type": "Partial<User>"
-      },
-      "PingResponse": {
-        "type": "object",
-        "title": "PingResponse",
-        "properties": {
-          "greeting": {
-            "type": "string"
-          },
-          "date": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string"
-          },
-          "headers": {
-            "type": "object",
-            "properties": {
-              "Content-Type": {
-                "type": "string"
-              }
-            },
-            "additionalProperties": true
-          }
-        }
       },
       "loopback.Count": {
         "type": "object",
