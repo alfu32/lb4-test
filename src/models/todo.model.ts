@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {belongsTo, Entity, model, property} from '@loopback/repository';
+import {TodoList} from './todo-list.model';
 
 @model()
 export class Todo extends Entity {
@@ -15,10 +16,17 @@ export class Todo extends Entity {
   title?: string;
 
   @property({
-    type: 'boolean',
+    type: 'string',
   })
-  isComplete?: boolean;
+  status?: string;
 
+
+  @property({type: 'date'}) created?: Date;
+  @property({type: 'date'}) updated?: Date;
+  @property({type: 'date'}) dueDate?: Date;
+
+  @belongsTo(() => TodoList, {name: 'todos'})
+  todoListId: number;
 
   constructor(data?: Partial<Todo>) {
     super(data);

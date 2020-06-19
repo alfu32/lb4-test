@@ -1,0 +1,1346 @@
+openapi: 3.0.0
+info:
+  title: lb4-test
+  version: 1.0.0
+  description: test of looopback 4
+  contact: {}
+paths:
+  /todo-lists/count:
+    get:
+      x-controller-name: TodoListController
+      x-operation-name: count
+      tags:
+        - TodoListController
+      responses:
+        "200":
+          description: TodoList model count
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/loopback.Count"
+      parameters:
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: TodoList.WhereFilter
+                additionalProperties: true
+                x-typescript-type: "@loopback/repository#Where<TodoList>"
+      operationId: TodoListController.count
+  "/todo-lists/{id}/todos":
+    post:
+      x-controller-name: TodoListTodoController
+      x-operation-name: create
+      tags:
+        - TodoListTodoController
+      responses:
+        "200":
+          description: TodoList model instance
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewTodoInTodoList"
+        x-parameter-index: 1
+      operationId: TodoListTodoController.create
+    patch:
+      x-controller-name: TodoListTodoController
+      x-operation-name: patch
+      tags:
+        - TodoListTodoController
+      responses:
+        "200":
+          description: TodoList.Todo PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/loopback.Count"
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Todo.WhereFilter
+                additionalProperties: true
+                x-typescript-type: "@loopback/repository#Where<Todo>"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TodoPartial"
+        x-parameter-index: 1
+      operationId: TodoListTodoController.patch
+    get:
+      x-controller-name: TodoListTodoController
+      x-operation-name: find
+      tags:
+        - TodoListTodoController
+      responses:
+        "200":
+          description: Array of TodoList has many Todo
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Todo"
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+      operationId: TodoListTodoController.find
+    delete:
+      x-controller-name: TodoListTodoController
+      x-operation-name: delete
+      tags:
+        - TodoListTodoController
+      responses:
+        "200":
+          description: TodoList.Todo DELETE success count
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/loopback.Count"
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Todo.WhereFilter
+                additionalProperties: true
+                x-typescript-type: "@loopback/repository#Where<Todo>"
+      operationId: TodoListTodoController.delete
+  "/todo-lists/{id}/user":
+    get:
+      x-controller-name: TodoListUserController
+      x-operation-name: getUser
+      tags:
+        - TodoListUserController
+      responses:
+        "200":
+          description: User belonging to TodoList
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      operationId: TodoListUserController.getUser
+  "/todo-lists/{id}":
+    put:
+      x-controller-name: TodoListController
+      x-operation-name: replaceById
+      tags:
+        - TodoListController
+      responses:
+        "204":
+          description: TodoList PUT success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TodoList"
+        x-parameter-index: 1
+      operationId: TodoListController.replaceById
+    patch:
+      x-controller-name: TodoListController
+      x-operation-name: updateById
+      tags:
+        - TodoListController
+      responses:
+        "204":
+          description: TodoList PATCH success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TodoListPartial"
+        x-parameter-index: 1
+      operationId: TodoListController.updateById
+    get:
+      x-controller-name: TodoListController
+      x-operation-name: findById
+      tags:
+        - TodoListController
+      responses:
+        "200":
+          description: TodoList model instance
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TodoListWithRelations"
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TodoList.Filter"
+      operationId: TodoListController.findById
+    delete:
+      x-controller-name: TodoListController
+      x-operation-name: deleteById
+      tags:
+        - TodoListController
+      responses:
+        "204":
+          description: TodoList DELETE success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      operationId: TodoListController.deleteById
+  /todo-lists:
+    post:
+      x-controller-name: TodoListController
+      x-operation-name: create
+      tags:
+        - TodoListController
+      responses:
+        "200":
+          description: TodoList model instance
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TodoList"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewTodoList"
+      operationId: TodoListController.create
+    patch:
+      x-controller-name: TodoListController
+      x-operation-name: updateAll
+      tags:
+        - TodoListController
+      responses:
+        "200":
+          description: TodoList PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/loopback.Count"
+      parameters:
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: TodoList.WhereFilter
+                additionalProperties: true
+                x-typescript-type: "@loopback/repository#Where<TodoList>"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TodoListPartial"
+      operationId: TodoListController.updateAll
+    get:
+      x-controller-name: TodoListController
+      x-operation-name: find
+      tags:
+        - TodoListController
+      responses:
+        "200":
+          description: Array of TodoList model instances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TodoListWithRelations"
+      parameters:
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TodoList.Filter1"
+      operationId: TodoListController.find
+  /todos/count:
+    get:
+      x-controller-name: TodoController
+      x-operation-name: count
+      tags:
+        - TodoController
+      responses:
+        "200":
+          description: Todo model count
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/loopback.Count"
+      parameters:
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Todo.WhereFilter
+                additionalProperties: true
+                x-typescript-type: "@loopback/repository#Where<Todo>"
+      operationId: TodoController.count
+  "/todos/{id}/todo-list":
+    get:
+      x-controller-name: TodoTodoListController
+      x-operation-name: getTodoList
+      tags:
+        - TodoTodoListController
+      responses:
+        "200":
+          description: TodoList belonging to Todo
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TodoList"
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      operationId: TodoTodoListController.getTodoList
+  "/todos/{id}":
+    put:
+      x-controller-name: TodoController
+      x-operation-name: replaceById
+      tags:
+        - TodoController
+      responses:
+        "204":
+          description: Todo PUT success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Todo"
+        x-parameter-index: 1
+      operationId: TodoController.replaceById
+    patch:
+      x-controller-name: TodoController
+      x-operation-name: updateById
+      tags:
+        - TodoController
+      responses:
+        "204":
+          description: Todo PATCH success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TodoPartial"
+        x-parameter-index: 1
+      operationId: TodoController.updateById
+    get:
+      x-controller-name: TodoController
+      x-operation-name: findById
+      tags:
+        - TodoController
+      responses:
+        "200":
+          description: Todo model instance
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TodoWithRelations"
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo.Filter"
+      operationId: TodoController.findById
+    delete:
+      x-controller-name: TodoController
+      x-operation-name: deleteById
+      tags:
+        - TodoController
+      responses:
+        "204":
+          description: Todo DELETE success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      operationId: TodoController.deleteById
+  /todos:
+    post:
+      x-controller-name: TodoController
+      x-operation-name: create
+      tags:
+        - TodoController
+      responses:
+        "200":
+          description: Todo model instance
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewTodo"
+      operationId: TodoController.create
+    patch:
+      x-controller-name: TodoController
+      x-operation-name: updateAll
+      tags:
+        - TodoController
+      responses:
+        "200":
+          description: Todo PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/loopback.Count"
+      parameters:
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Todo.WhereFilter
+                additionalProperties: true
+                x-typescript-type: "@loopback/repository#Where<Todo>"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TodoPartial"
+      operationId: TodoController.updateAll
+    get:
+      x-controller-name: TodoController
+      x-operation-name: find
+      tags:
+        - TodoController
+      responses:
+        "200":
+          description: Array of Todo model instances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TodoWithRelations"
+      parameters:
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo.Filter1"
+      operationId: TodoController.find
+  /users/count:
+    get:
+      x-controller-name: UserController
+      x-operation-name: count
+      tags:
+        - UserController
+      responses:
+        "200":
+          description: User model count
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/loopback.Count"
+      parameters:
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: User.WhereFilter
+                additionalProperties: true
+                x-typescript-type: "@loopback/repository#Where<User>"
+      operationId: UserController.count
+  "/users/{id}/todo-lists":
+    post:
+      x-controller-name: UserTodoListController
+      x-operation-name: create
+      tags:
+        - UserTodoListController
+      responses:
+        "200":
+          description: User model instance
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TodoList"
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewTodoListInUser"
+        x-parameter-index: 1
+      operationId: UserTodoListController.create
+    patch:
+      x-controller-name: UserTodoListController
+      x-operation-name: patch
+      tags:
+        - UserTodoListController
+      responses:
+        "200":
+          description: User.TodoList PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/loopback.Count"
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: TodoList.WhereFilter
+                additionalProperties: true
+                x-typescript-type: "@loopback/repository#Where<TodoList>"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TodoListPartial"
+        x-parameter-index: 1
+      operationId: UserTodoListController.patch
+    get:
+      x-controller-name: UserTodoListController
+      x-operation-name: find
+      tags:
+        - UserTodoListController
+      responses:
+        "200":
+          description: Array of User has many TodoList
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TodoList"
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+      operationId: UserTodoListController.find
+    delete:
+      x-controller-name: UserTodoListController
+      x-operation-name: delete
+      tags:
+        - UserTodoListController
+      responses:
+        "200":
+          description: User.TodoList DELETE success count
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/loopback.Count"
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: TodoList.WhereFilter
+                additionalProperties: true
+                x-typescript-type: "@loopback/repository#Where<TodoList>"
+      operationId: UserTodoListController.delete
+  "/users/{id}":
+    put:
+      x-controller-name: UserController
+      x-operation-name: replaceById
+      tags:
+        - UserController
+      responses:
+        "204":
+          description: User PUT success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+        x-parameter-index: 1
+      operationId: UserController.replaceById
+    patch:
+      x-controller-name: UserController
+      x-operation-name: updateById
+      tags:
+        - UserController
+      responses:
+        "204":
+          description: User PATCH success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserPartial"
+        x-parameter-index: 1
+      operationId: UserController.updateById
+    get:
+      x-controller-name: UserController
+      x-operation-name: findById
+      tags:
+        - UserController
+      responses:
+        "200":
+          description: User model instance
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserWithRelations"
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User.Filter"
+      operationId: UserController.findById
+    delete:
+      x-controller-name: UserController
+      x-operation-name: deleteById
+      tags:
+        - UserController
+      responses:
+        "204":
+          description: User DELETE success
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: number
+          required: true
+      operationId: UserController.deleteById
+  /users:
+    post:
+      x-controller-name: UserController
+      x-operation-name: create
+      tags:
+        - UserController
+      responses:
+        "200":
+          description: User model instance
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewUser"
+      operationId: UserController.create
+    patch:
+      x-controller-name: UserController
+      x-operation-name: updateAll
+      tags:
+        - UserController
+      responses:
+        "200":
+          description: User PATCH success count
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/loopback.Count"
+      parameters:
+        - name: where
+          in: query
+          content:
+            application/json:
+              schema:
+                type: object
+                title: User.WhereFilter
+                additionalProperties: true
+                x-typescript-type: "@loopback/repository#Where<User>"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserPartial"
+      operationId: UserController.updateAll
+    get:
+      x-controller-name: UserController
+      x-operation-name: find
+      tags:
+        - UserController
+      responses:
+        "200":
+          description: Array of User model instances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserWithRelations"
+      parameters:
+        - name: filter
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User.Filter1"
+      operationId: UserController.find
+servers:
+  - url: "http://localhost:3000"
+components:
+  schemas:
+    Todo:
+      title: Todo
+      properties:
+        id:
+          type: number
+        title:
+          type: string
+        status:
+          type: string
+        todoListId:
+          type: number
+      additionalProperties: false
+    NewTodoInTodoList:
+      title: NewTodoInTodoList
+      description: >-
+        (tsType: @loopback/repository-json-schema#Optional<Omit<Todo, 'id'>,
+        'todoListId'>, schemaOptions: { title: 'NewTodoInTodoList', exclude: [
+        'id' ], optional: [ 'todoListId' ] })
+      properties:
+        title:
+          type: string
+        status:
+          type: string
+        todoListId:
+          type: number
+      additionalProperties: false
+      x-typescript-type: >-
+        @loopback/repository-json-schema#Optional<Omit<Todo, 'id'>,
+        'todoListId'>
+    TodoPartial:
+      title: TodoPartial
+      description: "(tsType: Partial<Todo>, schemaOptions: { partial: true })"
+      properties:
+        id:
+          type: number
+        title:
+          type: string
+        status:
+          type: string
+        todoListId:
+          type: number
+      additionalProperties: false
+      x-typescript-type: Partial<Todo>
+    User:
+      title: User
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        email:
+          type: string
+        active:
+          type: boolean
+      required:
+        - email
+      additionalProperties: false
+    TodoList:
+      title: TodoList
+      properties:
+        id:
+          type: number
+        title:
+          type: string
+        userId:
+          type: number
+      required:
+        - title
+      additionalProperties: false
+    NewTodoList:
+      title: NewTodoList
+      description: >-
+        (tsType: Omit<TodoList, 'id'>, schemaOptions: { title: 'NewTodoList',
+        exclude: [ 'id' ] })
+      properties:
+        title:
+          type: string
+        userId:
+          type: number
+      required:
+        - title
+      additionalProperties: false
+      x-typescript-type: "Omit<TodoList, 'id'>"
+    TodoWithRelations:
+      title: TodoWithRelations
+      description: "(tsType: TodoWithRelations, schemaOptions: { includeRelations: true })"
+      properties:
+        id:
+          type: number
+        title:
+          type: string
+        status:
+          type: string
+        todoListId:
+          type: number
+        todos:
+          $ref: "#/components/schemas/TodoListWithRelations"
+      additionalProperties: false
+      x-typescript-type: TodoWithRelations
+    UserWithRelations:
+      title: UserWithRelations
+      description: "(tsType: UserWithRelations, schemaOptions: { includeRelations: true })"
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        email:
+          type: string
+        active:
+          type: boolean
+        todoLists:
+          type: array
+          items:
+            $ref: "#/components/schemas/TodoListWithRelations"
+      required:
+        - email
+      additionalProperties: false
+      x-typescript-type: UserWithRelations
+    TodoListWithRelations:
+      title: TodoListWithRelations
+      description: >-
+        (tsType: TodoListWithRelations, schemaOptions: { includeRelations: true
+        })
+      properties:
+        id:
+          type: number
+        title:
+          type: string
+        userId:
+          type: number
+        todos:
+          type: array
+          items:
+            $ref: "#/components/schemas/TodoWithRelations"
+        user:
+          $ref: "#/components/schemas/UserWithRelations"
+      required:
+        - title
+      additionalProperties: false
+      x-typescript-type: TodoListWithRelations
+    TodoListPartial:
+      title: TodoListPartial
+      description: "(tsType: Partial<TodoList>, schemaOptions: { partial: true })"
+      properties:
+        id:
+          type: number
+        title:
+          type: string
+        userId:
+          type: number
+      additionalProperties: false
+      x-typescript-type: Partial<TodoList>
+    NewTodo:
+      title: NewTodo
+      description: >-
+        (tsType: Omit<Todo, 'id'>, schemaOptions: { title: 'NewTodo', exclude: [
+        'id' ] })
+      properties:
+        title:
+          type: string
+        status:
+          type: string
+        todoListId:
+          type: number
+      additionalProperties: false
+      x-typescript-type: "Omit<Todo, 'id'>"
+    NewTodoListInUser:
+      title: NewTodoListInUser
+      description: >-
+        (tsType: @loopback/repository-json-schema#Optional<Omit<TodoList, 'id'>,
+        'userId'>, schemaOptions: { title: 'NewTodoListInUser', exclude: [ 'id'
+        ], optional: [ 'userId' ] })
+      properties:
+        title:
+          type: string
+        userId:
+          type: number
+      required:
+        - title
+      additionalProperties: false
+      x-typescript-type: >-
+        @loopback/repository-json-schema#Optional<Omit<TodoList, 'id'>,
+        'userId'>
+    NewUser:
+      title: NewUser
+      description: >-
+        (tsType: Omit<User, 'id'>, schemaOptions: { title: 'NewUser', exclude: [
+        'id' ] })
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        active:
+          type: boolean
+      required:
+        - email
+      additionalProperties: false
+      x-typescript-type: "Omit<User, 'id'>"
+    UserPartial:
+      title: UserPartial
+      description: "(tsType: Partial<User>, schemaOptions: { partial: true })"
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        email:
+          type: string
+        active:
+          type: boolean
+      additionalProperties: false
+      x-typescript-type: Partial<User>
+    loopback.Count:
+      type: object
+      title: loopback.Count
+      x-typescript-type: "@loopback/repository#Count"
+      properties:
+        count:
+          type: number
+    TodoList.Fields:
+      title: TodoList.Fields
+      type: object
+      properties:
+        id:
+          type: boolean
+        title:
+          type: boolean
+        userId:
+          type: boolean
+      additionalProperties: false
+    TodoList.ScopeFilter:
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          type: array
+          items:
+            type: string
+        where:
+          type: object
+          additionalProperties: true
+        fields:
+          type: object
+          properties: {}
+          additionalProperties: true
+      additionalProperties: false
+      title: TodoList.ScopeFilter
+    TodoList.IncludeFilter.Items:
+      title: TodoList.IncludeFilter.Items
+      type: object
+      properties:
+        relation:
+          type: string
+        scope:
+          $ref: "#/components/schemas/TodoList.ScopeFilter"
+    TodoList.Filter:
+      type: object
+      title: TodoList.Filter
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          type: array
+          items:
+            type: string
+        fields:
+          $ref: "#/components/schemas/TodoList.Fields"
+        include:
+          title: TodoList.IncludeFilter
+          type: array
+          items:
+            $ref: "#/components/schemas/TodoList.IncludeFilter.Items"
+      additionalProperties: false
+      x-typescript-type: "@loopback/repository#Filter<TodoList>"
+    TodoList.Filter1:
+      type: object
+      title: TodoList.Filter
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          type: array
+          items:
+            type: string
+        where:
+          title: TodoList.WhereFilter
+          type: object
+          additionalProperties: true
+        fields:
+          $ref: "#/components/schemas/TodoList.Fields"
+        include:
+          title: TodoList.IncludeFilter
+          type: array
+          items:
+            $ref: "#/components/schemas/TodoList.IncludeFilter.Items"
+      additionalProperties: false
+      x-typescript-type: "@loopback/repository#Filter<TodoList>"
+    Todo.Fields:
+      title: Todo.Fields
+      type: object
+      properties:
+        id:
+          type: boolean
+        title:
+          type: boolean
+        status:
+          type: string
+        todoListId:
+          type: boolean
+      additionalProperties: false
+    Todo.ScopeFilter:
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          type: array
+          items:
+            type: string
+        where:
+          type: object
+          additionalProperties: true
+        fields:
+          type: object
+          properties: {}
+          additionalProperties: true
+      additionalProperties: false
+      title: Todo.ScopeFilter
+    Todo.IncludeFilter.Items:
+      title: Todo.IncludeFilter.Items
+      type: object
+      properties:
+        relation:
+          type: string
+        scope:
+          $ref: "#/components/schemas/Todo.ScopeFilter"
+    Todo.Filter:
+      type: object
+      title: Todo.Filter
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          type: array
+          items:
+            type: string
+        fields:
+          $ref: "#/components/schemas/Todo.Fields"
+        include:
+          title: Todo.IncludeFilter
+          type: array
+          items:
+            $ref: "#/components/schemas/Todo.IncludeFilter.Items"
+      additionalProperties: false
+      x-typescript-type: "@loopback/repository#Filter<Todo>"
+    Todo.Filter1:
+      type: object
+      title: Todo.Filter
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          type: array
+          items:
+            type: string
+        where:
+          title: Todo.WhereFilter
+          type: object
+          additionalProperties: true
+        fields:
+          $ref: "#/components/schemas/Todo.Fields"
+        include:
+          title: Todo.IncludeFilter
+          type: array
+          items:
+            $ref: "#/components/schemas/Todo.IncludeFilter.Items"
+      additionalProperties: false
+      x-typescript-type: "@loopback/repository#Filter<Todo>"
+    User.Fields:
+      title: User.Fields
+      type: object
+      properties:
+        id:
+          type: boolean
+        name:
+          type: boolean
+        email:
+          type: boolean
+        active:
+          type: boolean
+      additionalProperties: false
+    User.ScopeFilter:
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          type: array
+          items:
+            type: string
+        where:
+          type: object
+          additionalProperties: true
+        fields:
+          type: object
+          properties: {}
+          additionalProperties: true
+      additionalProperties: false
+      title: User.ScopeFilter
+    User.IncludeFilter.Items:
+      title: User.IncludeFilter.Items
+      type: object
+      properties:
+        relation:
+          type: string
+        scope:
+          $ref: "#/components/schemas/User.ScopeFilter"
+    User.Filter:
+      type: object
+      title: User.Filter
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          type: array
+          items:
+            type: string
+        fields:
+          $ref: "#/components/schemas/User.Fields"
+        include:
+          title: User.IncludeFilter
+          type: array
+          items:
+            $ref: "#/components/schemas/User.IncludeFilter.Items"
+      additionalProperties: false
+      x-typescript-type: "@loopback/repository#Filter<User>"
+    User.Filter1:
+      type: object
+      title: User.Filter
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 1
+          example: 100
+        skip:
+          type: integer
+          minimum: 0
+        order:
+          type: array
+          items:
+            type: string
+        where:
+          title: User.WhereFilter
+          type: object
+          additionalProperties: true
+        fields:
+          $ref: "#/components/schemas/User.Fields"
+        include:
+          title: User.IncludeFilter
+          type: array
+          items:
+            $ref: "#/components/schemas/User.IncludeFilter.Items"
+      additionalProperties: false
+      x-typescript-type: "@loopback/repository#Filter<User>"
