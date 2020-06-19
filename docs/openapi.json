@@ -1310,8 +1310,8 @@
           "title": {
             "type": "string"
           },
-          "isComplete": {
-            "type": "boolean"
+          "status": {
+            "type": "string"
           },
           "todoListId": {
             "type": "number"
@@ -1326,8 +1326,8 @@
           "title": {
             "type": "string"
           },
-          "isComplete": {
-            "type": "boolean"
+          "status": {
+            "type": "string"
           },
           "todoListId": {
             "type": "number"
@@ -1346,8 +1346,8 @@
           "title": {
             "type": "string"
           },
-          "isComplete": {
-            "type": "boolean"
+          "status": {
+            "type": "string"
           },
           "todoListId": {
             "type": "number"
@@ -1422,8 +1422,8 @@
           "title": {
             "type": "string"
           },
-          "isComplete": {
-            "type": "boolean"
+          "status": {
+            "type": "string"
           },
           "todoListId": {
             "type": "number"
@@ -1517,8 +1517,8 @@
           "title": {
             "type": "string"
           },
-          "isComplete": {
-            "type": "boolean"
+          "status": {
+            "type": "string"
           },
           "todoListId": {
             "type": "number"
@@ -1745,8 +1745,8 @@
           "title": {
             "type": "boolean"
           },
-          "isComplete": {
-            "type": "boolean"
+          "status": {
+            "type": "string"
           },
           "todoListId": {
             "type": "boolean"

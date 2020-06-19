@@ -1,28 +1,14 @@
-import {
-  Count,
-  CountSchema,
-  Filter,
-  FilterExcludingWhere,
-  repository,
-  Where,
-} from '@loopback/repository';
-import {
-  post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
-  put,
-  del,
-  requestBody,
-} from '@loopback/rest';
+import {Count, CountSchema, Filter, FilterExcludingWhere, repository, Where} from '@loopback/repository';
+import {del, get, getModelSchemaRef, param, patch, post, put, requestBody} from '@loopback/rest';
 import {TodoList} from '../models';
-import {TodoListRepository} from '../repositories';
+import {TodoListRepository, TodoRepository} from '../repositories';
 
 export class TodoListController {
   constructor(
     @repository(TodoListRepository)
-    public todoListRepository : TodoListRepository,
+    public todoListRepository: TodoListRepository,
+    @repository(TodoRepository)
+    public todoRepository: TodoRepository,
   ) {}
 
   @post('/todo-lists', {
@@ -104,6 +90,20 @@ export class TodoListController {
     @param.where(TodoList) where?: Where<TodoList>,
   ): Promise<Count> {
     return this.todoListRepository.updateAll(todoList, where);
+  }
+
+  @get('/todo-lists/{id}/count', {
+    responses: {
+      '200': {
+        description: 'Todo model count',
+        content: {'application/json': {schema: CountSchema}},
+      },
+    },
+  })
+  async countByListId(
+    @param.path.number('id') id: number,
+  ): Promise<Count> {
+    return this.todoRepository.count({todoListId: id});
   }
 
   @get('/todo-lists/{id}', {

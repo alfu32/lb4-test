@@ -1,28 +1,12 @@
-import {
-  Count,
-  CountSchema,
-  Filter,
-  FilterExcludingWhere,
-  repository,
-  Where,
-} from '@loopback/repository';
-import {
-  post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
-  put,
-  del,
-  requestBody,
-} from '@loopback/rest';
+import {Count, CountSchema, Filter, FilterExcludingWhere, repository, Where} from '@loopback/repository';
+import {del, get, getModelSchemaRef, param, patch, post, put, requestBody} from '@loopback/rest';
 import {Todo} from '../models';
 import {TodoRepository} from '../repositories';
 
 export class TodoController {
   constructor(
     @repository(TodoRepository)
-    public todoRepository : TodoRepository,
+    public todoRepository: TodoRepository,
   ) {}
 
   @post('/todos', {
@@ -46,9 +30,29 @@ export class TodoController {
     })
     todo: Omit<Todo, 'id'>,
   ): Promise<Todo> {
+    todo.created = todo.updated = new Date();
     return this.todoRepository.create(todo);
   }
 
+  @get('/todos/statuses', {
+    responses: {
+      '200': {
+        description: 'Todo model count',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'array',
+              items: {type: 'string'},
+            }
+          }
+        },
+      },
+    },
+  })
+  async statuses(
+  ): Promise<string[]> {
+    return Promise.resolve('todo,progress,done'.split(','));
+  }
   @get('/todos/count', {
     responses: {
       '200': {
@@ -57,7 +61,7 @@ export class TodoController {
       },
     },
   })
-  async count(
+  async countAll(
     @param.where(Todo) where?: Where<Todo>,
   ): Promise<Count> {
     return this.todoRepository.count(where);
@@ -143,6 +147,7 @@ export class TodoController {
     })
     todo: Todo,
   ): Promise<void> {
+    todo.updated = new Date();
     await this.todoRepository.updateById(id, todo);
   }
 
@@ -157,6 +162,7 @@ export class TodoController {
     @param.path.number('id') id: number,
     @requestBody() todo: Todo,
   ): Promise<void> {
+    todo.updated = new Date();
     await this.todoRepository.replaceById(id, todo);
   }
 

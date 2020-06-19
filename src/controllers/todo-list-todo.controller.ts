@@ -1,30 +1,12 @@
-import {
-  Count,
-  CountSchema,
-  Filter,
-  repository,
-  Where,
-} from '@loopback/repository';
-import {
-  del,
-  get,
-  getModelSchemaRef,
-  getWhereSchemaFor,
-  param,
-  patch,
-  post,
-  requestBody,
-} from '@loopback/rest';
-import {
-  TodoList,
-  Todo,
-} from '../models';
+import {Count, CountSchema, Filter, repository, Where} from '@loopback/repository';
+import {del, get, getModelSchemaRef, getWhereSchemaFor, param, patch, post, requestBody} from '@loopback/rest';
+import {Todo, TodoList} from '../models';
 import {TodoListRepository} from '../repositories';
 
 export class TodoListTodoController {
   constructor(
     @repository(TodoListRepository) protected todoListRepository: TodoListRepository,
-  ) { }
+  ) {}
 
   @get('/todo-lists/{id}/todos', {
     responses: {
@@ -67,6 +49,7 @@ export class TodoListTodoController {
       },
     }) todo: Omit<Todo, 'id'>,
   ): Promise<Todo> {
+    todo.created = todo.updated = new Date();
     return this.todoListRepository.todos(id).create(todo);
   }
 

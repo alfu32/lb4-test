@@ -12,12 +12,12 @@ paths:
       tags:
         - TodoListController
       responses:
-        '200':
+        "200":
           description: TodoList model count
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/loopback.Count'
+                $ref: "#/components/schemas/loopback.Count"
       parameters:
         - name: where
           in: query
@@ -27,21 +27,21 @@ paths:
                 type: object
                 title: TodoList.WhereFilter
                 additionalProperties: true
-                x-typescript-type: '@loopback/repository#Where<TodoList>'
+                x-typescript-type: "@loopback/repository#Where<TodoList>"
       operationId: TodoListController.count
-  '/todo-lists/{id}/todos':
+  "/todo-lists/{id}/todos":
     post:
       x-controller-name: TodoListTodoController
       x-operation-name: create
       tags:
         - TodoListTodoController
       responses:
-        '200':
+        "200":
           description: TodoList model instance
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Todo'
+                $ref: "#/components/schemas/Todo"
       parameters:
         - name: id
           in: path
@@ -52,7 +52,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewTodoInTodoList'
+              $ref: "#/components/schemas/NewTodoInTodoList"
         x-parameter-index: 1
       operationId: TodoListTodoController.create
     patch:
@@ -61,12 +61,12 @@ paths:
       tags:
         - TodoListTodoController
       responses:
-        '200':
+        "200":
           description: TodoList.Todo PATCH success count
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/loopback.Count'
+                $ref: "#/components/schemas/loopback.Count"
       parameters:
         - name: id
           in: path
@@ -81,12 +81,12 @@ paths:
                 type: object
                 title: Todo.WhereFilter
                 additionalProperties: true
-                x-typescript-type: '@loopback/repository#Where<Todo>'
+                x-typescript-type: "@loopback/repository#Where<Todo>"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TodoPartial'
+              $ref: "#/components/schemas/TodoPartial"
         x-parameter-index: 1
       operationId: TodoListTodoController.patch
     get:
@@ -95,14 +95,14 @@ paths:
       tags:
         - TodoListTodoController
       responses:
-        '200':
+        "200":
           description: Array of TodoList has many Todo
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Todo'
+                  $ref: "#/components/schemas/Todo"
       parameters:
         - name: id
           in: path
@@ -123,12 +123,12 @@ paths:
       tags:
         - TodoListTodoController
       responses:
-        '200':
+        "200":
           description: TodoList.Todo DELETE success count
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/loopback.Count'
+                $ref: "#/components/schemas/loopback.Count"
       parameters:
         - name: id
           in: path
@@ -143,23 +143,23 @@ paths:
                 type: object
                 title: Todo.WhereFilter
                 additionalProperties: true
-                x-typescript-type: '@loopback/repository#Where<Todo>'
+                x-typescript-type: "@loopback/repository#Where<Todo>"
       operationId: TodoListTodoController.delete
-  '/todo-lists/{id}/user':
+  "/todo-lists/{id}/user":
     get:
       x-controller-name: TodoListUserController
       x-operation-name: getUser
       tags:
         - TodoListUserController
       responses:
-        '200':
+        "200":
           description: User belonging to TodoList
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/User'
+                  $ref: "#/components/schemas/User"
       parameters:
         - name: id
           in: path
@@ -167,14 +167,14 @@ paths:
             type: number
           required: true
       operationId: TodoListUserController.getUser
-  '/todo-lists/{id}':
+  "/todo-lists/{id}":
     put:
       x-controller-name: TodoListController
       x-operation-name: replaceById
       tags:
         - TodoListController
       responses:
-        '204':
+        "204":
           description: TodoList PUT success
       parameters:
         - name: id
@@ -186,7 +186,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TodoList'
+              $ref: "#/components/schemas/TodoList"
         x-parameter-index: 1
       operationId: TodoListController.replaceById
     patch:
@@ -195,7 +195,7 @@ paths:
       tags:
         - TodoListController
       responses:
-        '204':
+        "204":
           description: TodoList PATCH success
       parameters:
         - name: id
@@ -207,7 +207,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TodoListPartial'
+              $ref: "#/components/schemas/TodoListPartial"
         x-parameter-index: 1
       operationId: TodoListController.updateById
     get:
@@ -216,12 +216,12 @@ paths:
       tags:
         - TodoListController
       responses:
-        '200':
+        "200":
           description: TodoList model instance
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TodoListWithRelations'
+                $ref: "#/components/schemas/TodoListWithRelations"
       parameters:
         - name: id
           in: path
@@ -233,7 +233,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TodoList.Filter'
+                $ref: "#/components/schemas/TodoList.Filter"
       operationId: TodoListController.findById
     delete:
       x-controller-name: TodoListController
@@ -241,7 +241,7 @@ paths:
       tags:
         - TodoListController
       responses:
-        '204':
+        "204":
           description: TodoList DELETE success
       parameters:
         - name: id
@@ -257,17 +257,17 @@ paths:
       tags:
         - TodoListController
       responses:
-        '200':
+        "200":
           description: TodoList model instance
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TodoList'
+                $ref: "#/components/schemas/TodoList"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewTodoList'
+              $ref: "#/components/schemas/NewTodoList"
       operationId: TodoListController.create
     patch:
       x-controller-name: TodoListController
@@ -275,12 +275,12 @@ paths:
       tags:
         - TodoListController
       responses:
-        '200':
+        "200":
           description: TodoList PATCH success count
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/loopback.Count'
+                $ref: "#/components/schemas/loopback.Count"
       parameters:
         - name: where
           in: query
@@ -290,12 +290,12 @@ paths:
                 type: object
                 title: TodoList.WhereFilter
                 additionalProperties: true
-                x-typescript-type: '@loopback/repository#Where<TodoList>'
+                x-typescript-type: "@loopback/repository#Where<TodoList>"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TodoListPartial'
+              $ref: "#/components/schemas/TodoListPartial"
       operationId: TodoListController.updateAll
     get:
       x-controller-name: TodoListController
@@ -303,21 +303,21 @@ paths:
       tags:
         - TodoListController
       responses:
-        '200':
+        "200":
           description: Array of TodoList model instances
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/TodoListWithRelations'
+                  $ref: "#/components/schemas/TodoListWithRelations"
       parameters:
         - name: filter
           in: query
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TodoList.Filter1'
+                $ref: "#/components/schemas/TodoList.Filter1"
       operationId: TodoListController.find
   /todos/count:
     get:
@@ -326,12 +326,12 @@ paths:
       tags:
         - TodoController
       responses:
-        '200':
+        "200":
           description: Todo model count
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/loopback.Count'
+                $ref: "#/components/schemas/loopback.Count"
       parameters:
         - name: where
           in: query
@@ -341,23 +341,23 @@ paths:
                 type: object
                 title: Todo.WhereFilter
                 additionalProperties: true
-                x-typescript-type: '@loopback/repository#Where<Todo>'
+                x-typescript-type: "@loopback/repository#Where<Todo>"
       operationId: TodoController.count
-  '/todos/{id}/todo-list':
+  "/todos/{id}/todo-list":
     get:
       x-controller-name: TodoTodoListController
       x-operation-name: getTodoList
       tags:
         - TodoTodoListController
       responses:
-        '200':
+        "200":
           description: TodoList belonging to Todo
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/TodoList'
+                  $ref: "#/components/schemas/TodoList"
       parameters:
         - name: id
           in: path
@@ -365,14 +365,14 @@ paths:
             type: number
           required: true
       operationId: TodoTodoListController.getTodoList
-  '/todos/{id}':
+  "/todos/{id}":
     put:
       x-controller-name: TodoController
       x-operation-name: replaceById
       tags:
         - TodoController
       responses:
-        '204':
+        "204":
           description: Todo PUT success
       parameters:
         - name: id
@@ -384,7 +384,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Todo'
+              $ref: "#/components/schemas/Todo"
         x-parameter-index: 1
       operationId: TodoController.replaceById
     patch:
@@ -393,7 +393,7 @@ paths:
       tags:
         - TodoController
       responses:
-        '204':
+        "204":
           description: Todo PATCH success
       parameters:
         - name: id
@@ -405,7 +405,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TodoPartial'
+              $ref: "#/components/schemas/TodoPartial"
         x-parameter-index: 1
       operationId: TodoController.updateById
     get:
@@ -414,12 +414,12 @@ paths:
       tags:
         - TodoController
       responses:
-        '200':
+        "200":
           description: Todo model instance
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TodoWithRelations'
+                $ref: "#/components/schemas/TodoWithRelations"
       parameters:
         - name: id
           in: path
@@ -431,7 +431,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Todo.Filter'
+                $ref: "#/components/schemas/Todo.Filter"
       operationId: TodoController.findById
     delete:
       x-controller-name: TodoController
@@ -439,7 +439,7 @@ paths:
       tags:
         - TodoController
       responses:
-        '204':
+        "204":
           description: Todo DELETE success
       parameters:
         - name: id
@@ -455,17 +455,17 @@ paths:
       tags:
         - TodoController
       responses:
-        '200':
+        "200":
           description: Todo model instance
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Todo'
+                $ref: "#/components/schemas/Todo"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewTodo'
+              $ref: "#/components/schemas/NewTodo"
       operationId: TodoController.create
     patch:
       x-controller-name: TodoController
@@ -473,12 +473,12 @@ paths:
       tags:
         - TodoController
       responses:
-        '200':
+        "200":
           description: Todo PATCH success count
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/loopback.Count'
+                $ref: "#/components/schemas/loopback.Count"
       parameters:
         - name: where
           in: query
@@ -488,12 +488,12 @@ paths:
                 type: object
                 title: Todo.WhereFilter
                 additionalProperties: true
-                x-typescript-type: '@loopback/repository#Where<Todo>'
+                x-typescript-type: "@loopback/repository#Where<Todo>"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TodoPartial'
+              $ref: "#/components/schemas/TodoPartial"
       operationId: TodoController.updateAll
     get:
       x-controller-name: TodoController
@@ -501,21 +501,21 @@ paths:
       tags:
         - TodoController
       responses:
-        '200':
+        "200":
           description: Array of Todo model instances
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/TodoWithRelations'
+                  $ref: "#/components/schemas/TodoWithRelations"
       parameters:
         - name: filter
           in: query
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Todo.Filter1'
+                $ref: "#/components/schemas/Todo.Filter1"
       operationId: TodoController.find
   /users/count:
     get:
@@ -524,12 +524,12 @@ paths:
       tags:
         - UserController
       responses:
-        '200':
+        "200":
           description: User model count
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/loopback.Count'
+                $ref: "#/components/schemas/loopback.Count"
       parameters:
         - name: where
           in: query
@@ -539,21 +539,21 @@ paths:
                 type: object
                 title: User.WhereFilter
                 additionalProperties: true
-                x-typescript-type: '@loopback/repository#Where<User>'
+                x-typescript-type: "@loopback/repository#Where<User>"
       operationId: UserController.count
-  '/users/{id}/todo-lists':
+  "/users/{id}/todo-lists":
     post:
       x-controller-name: UserTodoListController
       x-operation-name: create
       tags:
         - UserTodoListController
       responses:
-        '200':
+        "200":
           description: User model instance
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TodoList'
+                $ref: "#/components/schemas/TodoList"
       parameters:
         - name: id
           in: path
@@ -564,7 +564,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewTodoListInUser'
+              $ref: "#/components/schemas/NewTodoListInUser"
         x-parameter-index: 1
       operationId: UserTodoListController.create
     patch:
@@ -573,12 +573,12 @@ paths:
       tags:
         - UserTodoListController
       responses:
-        '200':
+        "200":
           description: User.TodoList PATCH success count
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/loopback.Count'
+                $ref: "#/components/schemas/loopback.Count"
       parameters:
         - name: id
           in: path
@@ -593,12 +593,12 @@ paths:
                 type: object
                 title: TodoList.WhereFilter
                 additionalProperties: true
-                x-typescript-type: '@loopback/repository#Where<TodoList>'
+                x-typescript-type: "@loopback/repository#Where<TodoList>"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TodoListPartial'
+              $ref: "#/components/schemas/TodoListPartial"
         x-parameter-index: 1
       operationId: UserTodoListController.patch
     get:
@@ -607,14 +607,14 @@ paths:
       tags:
         - UserTodoListController
       responses:
-        '200':
+        "200":
           description: Array of User has many TodoList
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/TodoList'
+                  $ref: "#/components/schemas/TodoList"
       parameters:
         - name: id
           in: path
@@ -635,12 +635,12 @@ paths:
       tags:
         - UserTodoListController
       responses:
-        '200':
+        "200":
           description: User.TodoList DELETE success count
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/loopback.Count'
+                $ref: "#/components/schemas/loopback.Count"
       parameters:
         - name: id
           in: path
@@ -655,16 +655,16 @@ paths:
                 type: object
                 title: TodoList.WhereFilter
                 additionalProperties: true
-                x-typescript-type: '@loopback/repository#Where<TodoList>'
+                x-typescript-type: "@loopback/repository#Where<TodoList>"
       operationId: UserTodoListController.delete
-  '/users/{id}':
+  "/users/{id}":
     put:
       x-controller-name: UserController
       x-operation-name: replaceById
       tags:
         - UserController
       responses:
-        '204':
+        "204":
           description: User PUT success
       parameters:
         - name: id
@@ -676,7 +676,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
         x-parameter-index: 1
       operationId: UserController.replaceById
     patch:
@@ -685,7 +685,7 @@ paths:
       tags:
         - UserController
       responses:
-        '204':
+        "204":
           description: User PATCH success
       parameters:
         - name: id
@@ -697,7 +697,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserPartial'
+              $ref: "#/components/schemas/UserPartial"
         x-parameter-index: 1
       operationId: UserController.updateById
     get:
@@ -706,12 +706,12 @@ paths:
       tags:
         - UserController
       responses:
-        '200':
+        "200":
           description: User model instance
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserWithRelations'
+                $ref: "#/components/schemas/UserWithRelations"
       parameters:
         - name: id
           in: path
@@ -723,7 +723,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User.Filter'
+                $ref: "#/components/schemas/User.Filter"
       operationId: UserController.findById
     delete:
       x-controller-name: UserController
@@ -731,7 +731,7 @@ paths:
       tags:
         - UserController
       responses:
-        '204':
+        "204":
           description: User DELETE success
       parameters:
         - name: id
@@ -747,17 +747,17 @@ paths:
       tags:
         - UserController
       responses:
-        '200':
+        "200":
           description: User model instance
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewUser'
+              $ref: "#/components/schemas/NewUser"
       operationId: UserController.create
     patch:
       x-controller-name: UserController
@@ -765,12 +765,12 @@ paths:
       tags:
         - UserController
       responses:
-        '200':
+        "200":
           description: User PATCH success count
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/loopback.Count'
+                $ref: "#/components/schemas/loopback.Count"
       parameters:
         - name: where
           in: query
@@ -780,12 +780,12 @@ paths:
                 type: object
                 title: User.WhereFilter
                 additionalProperties: true
-                x-typescript-type: '@loopback/repository#Where<User>'
+                x-typescript-type: "@loopback/repository#Where<User>"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserPartial'
+              $ref: "#/components/schemas/UserPartial"
       operationId: UserController.updateAll
     get:
       x-controller-name: UserController
@@ -793,24 +793,24 @@ paths:
       tags:
         - UserController
       responses:
-        '200':
+        "200":
           description: Array of User model instances
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/UserWithRelations'
+                  $ref: "#/components/schemas/UserWithRelations"
       parameters:
         - name: filter
           in: query
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User.Filter1'
+                $ref: "#/components/schemas/User.Filter1"
       operationId: UserController.find
 servers:
-  - url: 'http://localhost:3000'
+  - url: "http://localhost:3000"
 components:
   schemas:
     Todo:
@@ -820,8 +820,8 @@ components:
           type: number
         title:
           type: string
-        isComplete:
-          type: boolean
+        status:
+          type: string
         todoListId:
           type: number
       additionalProperties: false
@@ -834,8 +834,8 @@ components:
       properties:
         title:
           type: string
-        isComplete:
-          type: boolean
+        status:
+          type: string
         todoListId:
           type: number
       additionalProperties: false
@@ -844,14 +844,14 @@ components:
         'todoListId'>
     TodoPartial:
       title: TodoPartial
-      description: '(tsType: Partial<Todo>, schemaOptions: { partial: true })'
+      description: "(tsType: Partial<Todo>, schemaOptions: { partial: true })"
       properties:
         id:
           type: number
         title:
           type: string
-        isComplete:
-          type: boolean
+        status:
+          type: string
         todoListId:
           type: number
       additionalProperties: false
@@ -895,26 +895,26 @@ components:
       required:
         - title
       additionalProperties: false
-      x-typescript-type: 'Omit<TodoList, ''id''>'
+      x-typescript-type: "Omit<TodoList, 'id'>"
     TodoWithRelations:
       title: TodoWithRelations
-      description: '(tsType: TodoWithRelations, schemaOptions: { includeRelations: true })'
+      description: "(tsType: TodoWithRelations, schemaOptions: { includeRelations: true })"
       properties:
         id:
           type: number
         title:
           type: string
-        isComplete:
-          type: boolean
+        status:
+          type: string
         todoListId:
           type: number
         todos:
-          $ref: '#/components/schemas/TodoListWithRelations'
+          $ref: "#/components/schemas/TodoListWithRelations"
       additionalProperties: false
       x-typescript-type: TodoWithRelations
     UserWithRelations:
       title: UserWithRelations
-      description: '(tsType: UserWithRelations, schemaOptions: { includeRelations: true })'
+      description: "(tsType: UserWithRelations, schemaOptions: { includeRelations: true })"
       properties:
         id:
           type: number
@@ -927,7 +927,7 @@ components:
         todoLists:
           type: array
           items:
-            $ref: '#/components/schemas/TodoListWithRelations'
+            $ref: "#/components/schemas/TodoListWithRelations"
       required:
         - email
       additionalProperties: false
@@ -947,16 +947,16 @@ components:
         todos:
           type: array
           items:
-            $ref: '#/components/schemas/TodoWithRelations'
+            $ref: "#/components/schemas/TodoWithRelations"
         user:
-          $ref: '#/components/schemas/UserWithRelations'
+          $ref: "#/components/schemas/UserWithRelations"
       required:
         - title
       additionalProperties: false
       x-typescript-type: TodoListWithRelations
     TodoListPartial:
       title: TodoListPartial
-      description: '(tsType: Partial<TodoList>, schemaOptions: { partial: true })'
+      description: "(tsType: Partial<TodoList>, schemaOptions: { partial: true })"
       properties:
         id:
           type: number
@@ -974,12 +974,12 @@ components:
       properties:
         title:
           type: string
-        isComplete:
-          type: boolean
+        status:
+          type: string
         todoListId:
           type: number
       additionalProperties: false
-      x-typescript-type: 'Omit<Todo, ''id''>'
+      x-typescript-type: "Omit<Todo, 'id'>"
     NewTodoListInUser:
       title: NewTodoListInUser
       description: >-
@@ -1012,10 +1012,10 @@ components:
       required:
         - email
       additionalProperties: false
-      x-typescript-type: 'Omit<User, ''id''>'
+      x-typescript-type: "Omit<User, 'id'>"
     UserPartial:
       title: UserPartial
-      description: '(tsType: Partial<User>, schemaOptions: { partial: true })'
+      description: "(tsType: Partial<User>, schemaOptions: { partial: true })"
       properties:
         id:
           type: number
@@ -1030,7 +1030,7 @@ components:
     loopback.Count:
       type: object
       title: loopback.Count
-      x-typescript-type: '@loopback/repository#Count'
+      x-typescript-type: "@loopback/repository#Count"
       properties:
         count:
           type: number
@@ -1077,7 +1077,7 @@ components:
         relation:
           type: string
         scope:
-          $ref: '#/components/schemas/TodoList.ScopeFilter'
+          $ref: "#/components/schemas/TodoList.ScopeFilter"
     TodoList.Filter:
       type: object
       title: TodoList.Filter
@@ -1097,14 +1097,14 @@ components:
           items:
             type: string
         fields:
-          $ref: '#/components/schemas/TodoList.Fields'
+          $ref: "#/components/schemas/TodoList.Fields"
         include:
           title: TodoList.IncludeFilter
           type: array
           items:
-            $ref: '#/components/schemas/TodoList.IncludeFilter.Items'
+            $ref: "#/components/schemas/TodoList.IncludeFilter.Items"
       additionalProperties: false
-      x-typescript-type: '@loopback/repository#Filter<TodoList>'
+      x-typescript-type: "@loopback/repository#Filter<TodoList>"
     TodoList.Filter1:
       type: object
       title: TodoList.Filter
@@ -1128,14 +1128,14 @@ components:
           type: object
           additionalProperties: true
         fields:
-          $ref: '#/components/schemas/TodoList.Fields'
+          $ref: "#/components/schemas/TodoList.Fields"
         include:
           title: TodoList.IncludeFilter
           type: array
           items:
-            $ref: '#/components/schemas/TodoList.IncludeFilter.Items'
+            $ref: "#/components/schemas/TodoList.IncludeFilter.Items"
       additionalProperties: false
-      x-typescript-type: '@loopback/repository#Filter<TodoList>'
+      x-typescript-type: "@loopback/repository#Filter<TodoList>"
     Todo.Fields:
       title: Todo.Fields
       type: object
@@ -1144,8 +1144,8 @@ components:
           type: boolean
         title:
           type: boolean
-        isComplete:
-          type: boolean
+        status:
+          type: string
         todoListId:
           type: boolean
       additionalProperties: false
@@ -1181,7 +1181,7 @@ components:
         relation:
           type: string
         scope:
-          $ref: '#/components/schemas/Todo.ScopeFilter'
+          $ref: "#/components/schemas/Todo.ScopeFilter"
     Todo.Filter:
       type: object
       title: Todo.Filter
@@ -1201,14 +1201,14 @@ components:
           items:
             type: string
         fields:
-          $ref: '#/components/schemas/Todo.Fields'
+          $ref: "#/components/schemas/Todo.Fields"
         include:
           title: Todo.IncludeFilter
           type: array
           items:
-            $ref: '#/components/schemas/Todo.IncludeFilter.Items'
+            $ref: "#/components/schemas/Todo.IncludeFilter.Items"
       additionalProperties: false
-      x-typescript-type: '@loopback/repository#Filter<Todo>'
+      x-typescript-type: "@loopback/repository#Filter<Todo>"
     Todo.Filter1:
       type: object
       title: Todo.Filter
@@ -1232,14 +1232,14 @@ components:
           type: object
           additionalProperties: true
         fields:
-          $ref: '#/components/schemas/Todo.Fields'
+          $ref: "#/components/schemas/Todo.Fields"
         include:
           title: Todo.IncludeFilter
           type: array
           items:
-            $ref: '#/components/schemas/Todo.IncludeFilter.Items'
+            $ref: "#/components/schemas/Todo.IncludeFilter.Items"
       additionalProperties: false
-      x-typescript-type: '@loopback/repository#Filter<Todo>'
+      x-typescript-type: "@loopback/repository#Filter<Todo>"
     User.Fields:
       title: User.Fields
       type: object
@@ -1285,7 +1285,7 @@ components:
         relation:
           type: string
         scope:
-          $ref: '#/components/schemas/User.ScopeFilter'
+          $ref: "#/components/schemas/User.ScopeFilter"
     User.Filter:
       type: object
       title: User.Filter
@@ -1305,14 +1305,14 @@ components:
           items:
             type: string
         fields:
-          $ref: '#/components/schemas/User.Fields'
+          $ref: "#/components/schemas/User.Fields"
         include:
           title: User.IncludeFilter
           type: array
           items:
-            $ref: '#/components/schemas/User.IncludeFilter.Items'
+            $ref: "#/components/schemas/User.IncludeFilter.Items"
       additionalProperties: false
-      x-typescript-type: '@loopback/repository#Filter<User>'
+      x-typescript-type: "@loopback/repository#Filter<User>"
     User.Filter1:
       type: object
       title: User.Filter
@@ -1336,11 +1336,11 @@ components:
           type: object
           additionalProperties: true
         fields:
-          $ref: '#/components/schemas/User.Fields'
+          $ref: "#/components/schemas/User.Fields"
         include:
           title: User.IncludeFilter
           type: array
           items:
-            $ref: '#/components/schemas/User.IncludeFilter.Items'
+            $ref: "#/components/schemas/User.IncludeFilter.Items"
       additionalProperties: false
-      x-typescript-type: '@loopback/repository#Filter<User>'
+      x-typescript-type: "@loopback/repository#Filter<User>"
