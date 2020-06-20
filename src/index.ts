@@ -12,9 +12,9 @@ export async function main(options: ApplicationConfig = {}) {
   console.log(`Server is running at ${url}`);
   console.log(`Try ${url}/ping`);
   console.log(`or http://localhost:3000/`);
-  console.log(`or https://${
-    readFileSync('/proc/sys/kernel/hostname').toString().trim()
-    }.app.online.visualstudio.com/`);
+  // console.log(`or https://${
+  //   readFileSync('/proc/sys/kernel/hostname').toString().trim()
+  //   }.app.online.visualstudio.com/`);
 
   return app;
 }
