@@ -1,33 +1,13 @@
-import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Entity, hasMany, model, property} from '@loopback/repository';
 import {TodoList} from './todo-list.model';
 
 @model()
 export class User extends Entity {
-  @property({
-    type: 'number',
-    id: true,
-    generated: true,
-  })
-  id?: number;
-
-  @property({
-    type: 'string',
-  })
-  name?: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  email: string;
-
-  @property({
-    type: 'boolean',
-  })
-  active?: boolean;
-
-  @hasMany(() => TodoList)
-  todoLists: TodoList[];
+  @property({type: 'number', id: true, generated: true}) id?: number;
+  @property({type: 'string'}) name?: string;
+  @property({type: 'string', required: true}) email: string;
+  @property({type: 'boolean'}) active?: boolean;
+  @hasMany(() => TodoList) todoLists: TodoList[];
 
   constructor(data?: Partial<User>) {
     super(data);
